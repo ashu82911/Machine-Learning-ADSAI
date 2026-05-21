@@ -2,8 +2,8 @@ import streamlit as st
 from pages import home, jobs, chatbot, knowledge, tata_overview, feed, profile, network
 
 st.set_page_config(
-    page_title="Ashu | AI Portal",
-    page_icon="🤖",
+    page_title="FacebookIndia AI",
+    page_icon="🇮🇳",
     layout="wide",
     initial_sidebar_state="expanded"
 )
@@ -46,7 +46,8 @@ if "notifications" not in st.session_state:
 # Sidebar
 with st.sidebar:
     st.image("https://img.icons8.com/fluency/96/artificial-intelligence.png", width=70)
-    st.markdown(f"## 👨‍💻 Ashu's AI Portal")
+    st.markdown("## 🇮🇳 FacebookIndia AI")
+    st.markdown("*by Ashu · AI & Data Science*")
     st.markdown("---")
 
     unread = sum(1 for n in st.session_state.notifications if not n["read"])

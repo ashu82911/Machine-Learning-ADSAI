@@ -4,9 +4,9 @@ def show():
     st.markdown("""
     <div style='background: linear-gradient(135deg, #0d1b2a 0%, #1a73e8 100%);
                 padding: 3rem; border-radius: 16px; text-align: center; margin-bottom: 2rem;'>
-        <h1 style='color: white; font-size: 2.8rem; margin: 0;'>🤖 Ashu's AI Portal</h1>
+        <h1 style='color: white; font-size: 2.8rem; margin: 0;'>🇮🇳 FacebookIndia AI</h1>
         <p style='color: #cce0ff; font-size: 1.1rem; margin-top: 0.8rem;'>
-            AI-powered Job Search · Social Feed · Chatbot · Knowledge Base
+            India's AI-powered Social Portal · Jobs · Chatbot · Knowledge · Network
         </p>
     </div>
     """, unsafe_allow_html=True)
