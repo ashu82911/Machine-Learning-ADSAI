@@ -1,6 +1,6 @@
-# 🤖 AshTech AI Portal
+# 🤖 Ashu's AI Portal
 
-**Built by Ashutosh Kumar Pandey**
+**Built by Ashu (ashu82911)**
 
 An AI-powered company portal for job search and technical knowledge.
 

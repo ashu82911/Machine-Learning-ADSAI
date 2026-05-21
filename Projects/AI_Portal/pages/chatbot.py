@@ -11,7 +11,7 @@ def get_ai_response(question: str, history: list) -> str:
         client = openai.OpenAI(api_key=api_key)
         messages = [
             {"role": "system", "content": (
-                "You are AshBot, an expert AI assistant for AshTech AI Portal. "
+                "You are AshBot, Ashu's expert AI assistant for Ashu's AI Portal. "
                 "You help users with AI/ML concepts, Data Science, Cloud technologies, "
                 "job search advice, interview preparation, and career guidance. "
                 "Be concise, helpful, and encouraging."
@@ -84,7 +84,7 @@ def rule_based_response(q: str) -> str:
 
 
 def show():
-    st.markdown("## 🤖 AshBot — AI Assistant")
+    st.markdown("## 🤖 AshBot — Ashu's AI Assistant")
     st.markdown("Ask me anything about AI, ML, Data Science, careers & more!")
 
     # Optional OpenAI key
@@ -100,7 +100,7 @@ def show():
     if "chat_history" not in st.session_state:
         st.session_state.chat_history = [
             {"role": "assistant", "content":
-             "👋 Hi! I'm **AshBot**. Ask me about AI, ML, jobs, or anything tech!"}
+             "👋 Hi! I'm **AshBot**, Ashu's AI assistant. Ask me about AI, ML, jobs, or anything tech!"}
         ]
 
     # Display chat
