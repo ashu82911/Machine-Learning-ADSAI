@@ -1,91 +1,117 @@
 import streamlit as st
-import time
 
 def show():
-    st.markdown("## 📰 Feed")
+    col_feed, col_right = st.columns([3, 1])
 
-    # ── Create Post ──────────────────────────────────────────────
-    st.markdown("""
-    <div style='background:white; padding:1rem 1.5rem; border-radius:14px;
-                box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1.2rem;'>
-        <h4 style='margin:0 0 0.5rem 0; color:#0d1b2a;'>✍️ Create Post</h4>
-    </div>""", unsafe_allow_html=True)
+    with col_feed:
+        st.markdown("## 📰 Feed")
 
-    with st.container():
-        col1, col2 = st.columns([1, 10])
-        with col1:
-            st.markdown("<div style='font-size:2rem; margin-top:0.3rem;'>👨‍💻</div>", unsafe_allow_html=True)
-        with col2:
-            new_post = st.text_area("", placeholder="What's on your mind, Ashu?", label_visibility="collapsed", height=80)
+        # Create Post box
+        st.markdown("""
+        <div style='background:white; padding:1.2rem 1.5rem; border-radius:16px;
+                    box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:1.2rem;'>
+            <div style='display:flex; align-items:center; gap:12px; margin-bottom:0.8rem;'>
+                <img src='https://api.dicebear.com/7.x/avataaars/svg?seed=Ashu'
+                     width='44' style='border-radius:50%; border:2px solid #1a73e8;'/>
+                <span style='color:#555; font-size:0.95rem;'>What's on your mind, Ashu?</span>
+            </div>
+        </div>""", unsafe_allow_html=True)
 
-        col_a, col_b, col_c, col_d = st.columns([2, 2, 2, 4])
-        with col_a:
-            photo = st.button("📷 Photo")
-        with col_b:
-            video = st.button("🎥 Video")
-        with col_c:
-            feeling = st.button("😊 Feeling")
-        with col_d:
-            if st.button("🚀 Post", type="primary"):
+        new_post = st.text_area("", placeholder="Share something with the AI community...",
+                                label_visibility="collapsed", height=90)
+        img_url = st.text_input("📷 Add image URL (optional)",
+                                placeholder="https://images.unsplash.com/...",
+                                label_visibility="visible")
+
+        ca, cb, cc = st.columns([2, 2, 6])
+        with ca: st.button("😊 Feeling")
+        with cb: st.button("📍 Location")
+        with cc:
+            if st.button("🚀 Post Now", type="primary"):
                 if new_post.strip():
                     new_id = max([p["id"] for p in st.session_state.posts], default=0) + 1
                     st.session_state.posts.insert(0, {
-                        "id": new_id, "user": "Ashu", "avatar": "👨‍💻",
-                        "text": new_post, "likes": 0, "liked_by": [],
-                        "comments": [], "time": "Just now"
+                        "id": new_id, "user": "Ashu",
+                        "avatar": "https://api.dicebear.com/7.x/avataaars/svg?seed=Ashu",
+                        "text": new_post,
+                        "image": img_url if img_url.strip() else "",
+                        "likes": 0, "liked_by": [], "comments": [], "time": "Just now"
                     })
-                    st.success("Post shared!")
+                    st.success("✅ Post shared!")
                     st.rerun()
                 else:
                     st.warning("Write something first!")
 
-    st.markdown("---")
+        st.markdown("---")
 
-    # ── Stories Row ──────────────────────────────────────────────
-    st.markdown("**📖 Stories**")
-    s_cols = st.columns(5)
-    stories = [
-        ("👨‍💻", "Ashu", "#1a73e8"),
-        ("👩‍💼", "Priya", "#e91e63"),
-        ("👨‍🔬", "Rahul", "#9c27b0"),
-        ("👩‍💻", "Sneha", "#ff5722"),
-        ("👨‍🎓", "Amit", "#4caf50"),
-    ]
-    for col, (avatar, name, color) in zip(s_cols, stories):
-        with col:
+        # Stories
+        st.markdown("**📖 Stories**")
+        stories = [
+            ("Ashu",  "https://api.dicebear.com/7.x/avataaars/svg?seed=Ashu",
+             "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=200&q=60", "#1a73e8"),
+            ("Priya", "https://api.dicebear.com/7.x/avataaars/svg?seed=Priya",
+             "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&q=60", "#e91e63"),
+            ("Rahul", "https://api.dicebear.com/7.x/avataaars/svg?seed=Rahul",
+             "https://images.unsplash.com/photo-1555949963-aa79dcee981c?w=200&q=60", "#9c27b0"),
+            ("Sneha", "https://api.dicebear.com/7.x/avataaars/svg?seed=Sneha",
+             "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=200&q=60", "#ff5722"),
+            ("Amit",  "https://api.dicebear.com/7.x/avataaars/svg?seed=Amit",
+             "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=200&q=60", "#4caf50"),
+        ]
+        s_cols = st.columns(5)
+        for col, (name, av, bg, color) in zip(s_cols, stories):
+            with col:
+                st.markdown(f"""
+                <div style='border-radius:14px; overflow:hidden; cursor:pointer;
+                            box-shadow:0 3px 10px rgba(0,0,0,0.12); position:relative; height:130px;'>
+                    <img src='{bg}' style='width:100%; height:100%; object-fit:cover;'/>
+                    <div style='position:absolute; top:0; left:0; right:0; bottom:0;
+                                background:linear-gradient(to bottom, transparent 40%, rgba(0,0,0,0.6));'></div>
+                    <img src='{av}' width='36' style='position:absolute; top:8px; left:8px;
+                         border-radius:50%; border:3px solid {color};'/>
+                    <div style='position:absolute; bottom:8px; left:8px; color:white;
+                                font-size:0.75rem; font-weight:600;'>{name}</div>
+                </div>""", unsafe_allow_html=True)
+
+        st.markdown("<br>", unsafe_allow_html=True)
+
+        # Posts
+        for post in st.session_state.posts:
             st.markdown(f"""
-            <div style='background:white; border-radius:12px; padding:0.8rem;
-                        text-align:center; box-shadow:0 2px 6px rgba(0,0,0,0.08);
-                        border-top: 4px solid {color}; cursor:pointer;'>
-                <div style='font-size:2rem;'>{avatar}</div>
-                <div style='font-size:0.75rem; color:#555; margin-top:4px;'>{name}</div>
-            </div>""", unsafe_allow_html=True)
-
-    st.markdown("<br>", unsafe_allow_html=True)
-
-    # ── Posts Feed ───────────────────────────────────────────────
-    for post in st.session_state.posts:
-        with st.container():
-            st.markdown(f"""
-            <div style='background:white; border-radius:14px; padding:1.2rem 1.5rem;
-                        box-shadow:0 2px 8px rgba(0,0,0,0.07); margin-bottom:1rem;'>
-                <div style='display:flex; align-items:center; margin-bottom:0.8rem;'>
-                    <span style='font-size:2rem; margin-right:0.8rem;'>{post["avatar"]}</span>
-                    <div>
-                        <strong style='color:#0d1b2a;'>{post["user"]}</strong><br>
-                        <span style='color:#999; font-size:0.8rem;'>{post["time"]}</span>
+            <div style='background:white; border-radius:16px; overflow:hidden;
+                        box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:1.2rem;'>
+                <div style='padding:1.2rem 1.5rem 0.8rem;'>
+                    <div style='display:flex; align-items:center; gap:12px;'>
+                        <img src='{post["avatar"]}' width='46'
+                             style='border-radius:50%; border:2px solid #1a73e8;'/>
+                        <div>
+                            <div style='font-weight:700; color:#0d1b2a;'>{post["user"]}</div>
+                            <div style='color:#999; font-size:0.78rem;'>{post["time"]} · 🌐 Public</div>
+                        </div>
                     </div>
-                </div>
-                <p style='color:#333; margin:0 0 1rem 0; line-height:1.6;'>{post["text"]}</p>
-                <hr style='border:none; border-top:1px solid #f0f0f0; margin:0.5rem 0;'>
+                    <p style='color:#333; margin:0.8rem 0; line-height:1.65; font-size:0.95rem;'>
+                        {post["text"]}
+                    </p>
+                </div>""", unsafe_allow_html=True)
+
+            if post.get("image"):
+                st.markdown(f"""
+                <img src='{post["image"]}' style='width:100%; max-height:380px;
+                     object-fit:cover; display:block;'/>""", unsafe_allow_html=True)
+
+            liked = "Ashu" in post["liked_by"]
+            st.markdown(f"""
+            <div style='padding:0.5rem 1.5rem; border-top:1px solid #f0f0f0;
+                        display:flex; gap:8px; color:#666; font-size:0.85rem;'>
+                <span>👍 {post["likes"]} likes</span>
+                <span>·</span>
+                <span>💬 {len(post["comments"])} comments</span>
+            </div>
             </div>""", unsafe_allow_html=True)
 
-            # Action buttons
-            c1, c2, c3, c4 = st.columns([2, 2, 2, 4])
-            liked = "Ashu" in post["liked_by"]
-            like_label = f"👍 Like ({post['likes']})" if not liked else f"💙 Liked ({post['likes']})"
-
-            with c1:
+            bc1, bc2, bc3 = st.columns(3)
+            with bc1:
+                like_label = "💙 Liked" if liked else "👍 Like"
                 if st.button(like_label, key=f"like_{post['id']}"):
                     if "Ashu" not in post["liked_by"]:
                         post["likes"] += 1
@@ -94,22 +120,55 @@ def show():
                         post["likes"] -= 1
                         post["liked_by"].remove("Ashu")
                     st.rerun()
-            with c2:
-                show_comments = st.button(f"💬 Comment ({len(post['comments'])})", key=f"cmt_{post['id']}")
-            with c3:
+            with bc2:
+                st.button(f"💬 Comment", key=f"cmt_btn_{post['id']}")
+            with bc3:
                 st.button("↗️ Share", key=f"share_{post['id']}")
 
-            # Comments section
-            if show_comments or f"show_cmt_{post['id']}" in st.session_state:
-                st.session_state[f"show_cmt_{post['id']}"] = True
-                for c in post["comments"]:
-                    st.markdown(f"""
-                    <div style='background:#f0f2f5; border-radius:8px; padding:0.5rem 1rem;
-                                margin:0.3rem 0; font-size:0.9rem; color:#333;'>
-                        💬 {c}
-                    </div>""", unsafe_allow_html=True)
-                new_comment = st.text_input("Write a comment...", key=f"cinput_{post['id']}", label_visibility="collapsed")
-                if st.button("Send", key=f"csend_{post['id']}"):
-                    if new_comment.strip():
-                        post["comments"].append(f"Ashu: {new_comment}")
-                        st.rerun()
+            # Comments
+            for c in post["comments"]:
+                st.markdown(f"""
+                <div style='background:#f8f9fa; border-radius:10px; padding:0.5rem 1rem;
+                            margin:0.2rem 1.5rem; font-size:0.88rem; color:#444;'>
+                    💬 {c}
+                </div>""", unsafe_allow_html=True)
+
+            new_c = st.text_input("", placeholder="Write a comment...",
+                                  key=f"cinput_{post['id']}", label_visibility="collapsed")
+            if st.button("Send 📤", key=f"csend_{post['id']}"):
+                if new_c.strip():
+                    post["comments"].append(f"Ashu: {new_c}")
+                    st.rerun()
+
+    # Right sidebar
+    with col_right:
+        st.markdown("""
+        <div style='background:white; border-radius:14px; padding:1rem;
+                    box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-bottom:1rem;'>
+            <h4 style='color:#0d1b2a; margin-top:0;'>🔥 Trending Topics</h4>
+        </div>""", unsafe_allow_html=True)
+        trends = ["#LLM", "#AIIndia", "#DataScience", "#MLOps", "#GCP", "#DeepLearning", "#Python"]
+        for t in trends:
+            st.markdown(f"""
+            <div style='background:#e8f0fe; color:#1a73e8; padding:6px 12px;
+                        border-radius:20px; margin:4px 0; font-size:0.85rem;
+                        font-weight:600; cursor:pointer;'>{t}</div>""",
+                        unsafe_allow_html=True)
+
+        st.markdown("""
+        <div style='background:white; border-radius:14px; padding:1rem;
+                    box-shadow:0 4px 12px rgba(0,0,0,0.08); margin-top:1rem;'>
+            <h4 style='color:#0d1b2a; margin-top:0;'>👥 Suggested</h4>
+        </div>""", unsafe_allow_html=True)
+        suggested = [("Vikram Singh","AI Researcher","https://api.dicebear.com/7.x/avataaars/svg?seed=Vikram"),
+                     ("Neha Joshi","DL Engineer","https://api.dicebear.com/7.x/avataaars/svg?seed=Neha")]
+        for name, role, av in suggested:
+            st.markdown(f"""
+            <div style='display:flex; align-items:center; gap:8px; margin:8px 0;'>
+                <img src='{av}' width='36' style='border-radius:50%;'/>
+                <div>
+                    <div style='font-weight:600; font-size:0.85rem; color:#0d1b2a;'>{name}</div>
+                    <div style='color:#777; font-size:0.75rem;'>{role}</div>
+                </div>
+            </div>""", unsafe_allow_html=True)
+            st.button("➕ Connect", key=f"sug_{name}")
