@@ -64,7 +64,7 @@ def rule_based_response(q: str) -> str:
                 "- **Airflow**: Workflow orchestration for data pipelines\n"
                 "- **Terraform**: Infrastructure as Code (IaC)\n"
                 "- **Tekton**: Kubernetes-native CI/CD pipelines\n\n"
-                "These are key skills for Cloud Data Engineering roles at companies like Ford!")
+                "These are key skills for Cloud Data Engineering roles at companies like TATA!")
     elif any(w in q for w in ["nlp", "natural language", "bert", "transformer", "gpt"]):
         return ("**NLP & Transformers:**\n\n"
                 "- **BERT**: Bidirectional encoder for understanding text\n"

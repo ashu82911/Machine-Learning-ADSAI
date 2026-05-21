@@ -1,7 +1,7 @@
 import streamlit as st
 
 def show():
-    st.markdown("## 📊 Ford Account — Executive Overview")
+    st.markdown("## 📊 TATA Account — Executive Overview")
     st.markdown("*Cloud Data Engineering, Automation & Cost Optimization Initiatives*")
     st.markdown("---")
 

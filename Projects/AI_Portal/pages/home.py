@@ -45,7 +45,7 @@ def show():
         <div style='background:white; padding:1.5rem; border-radius:12px;
                     box-shadow:0 2px 12px rgba(0,0,0,0.08); text-align:center;'>
             <div style='font-size:2.5rem;'>📊</div>
-            <h3 style='color:#1a73e8;'>Ford Overview</h3>
+            <h3 style='color:#1a73e8;'>TATA Overview</h3>
             <p style='color:#555;'>Cloud Data Engineering & Cost Optimization insights</p>
         </div>""", unsafe_allow_html=True)
 

@@ -9,7 +9,7 @@ An AI-powered company portal for job search and technical knowledge.
 - 💼 **Job Search** — Browse AI/ML/Data Science/Cloud jobs with filters
 - 🤖 **AI Chatbot (AshBot)** — Ask anything about AI, ML, careers & tech
 - 📚 **Knowledge Base** — Structured learning: ML, DL, DS, Cloud, Python
-- 📊 **Ford Overview** — Editable executive overview (Cloud Data Engineering)
+- 📊 **TATA Overview** — Editable executive overview (Cloud Data Engineering)
 
 ## Run Locally
 ```bash

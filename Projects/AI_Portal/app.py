@@ -1,5 +1,5 @@
 import streamlit as st
-from pages import home, jobs, chatbot, knowledge, ford_overview
+from pages import home, jobs, chatbot, knowledge, tata_overview
 
 st.set_page_config(
     page_title="AshTech AI Portal",
@@ -34,7 +34,7 @@ with st.sidebar:
         "💼 Job Search",
         "🤖 AI Chatbot",
         "📚 Knowledge Base",
-        "📊 Ford Overview"
+        "📊 TATA Overview"
     ])
     st.markdown("---")
     st.markdown("**Built by** Ashutosh Kumar Pandey")
@@ -49,5 +49,5 @@ elif page == "🤖 AI Chatbot":
     chatbot.show()
 elif page == "📚 Knowledge Base":
     knowledge.show()
-elif page == "📊 Ford Overview":
-    ford_overview.show()
+elif page == "📊 TATA Overview":
+    tata_overview.show()

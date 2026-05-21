@@ -9,7 +9,7 @@ JOBS = [
      "type": "Full-time", "skills": "Python, SQL, Power BI, Azure", "salary": "₹20-35 LPA", "category": "Data Science"},
     {"title": "AI Research Engineer", "company": "Amazon", "location": "Remote",
      "type": "Full-time", "skills": "Deep Learning, NLP, PyTorch", "salary": "₹30-50 LPA", "category": "ML/AI"},
-    {"title": "Cloud Data Engineer", "company": "Ford Motor", "location": "Chennai, India",
+    {"title": "Cloud Data Engineer", "company": "TATA Consultancy Services", "location": "Chennai, India",
      "type": "Full-time", "skills": "GCP, BigQuery, Airflow, Terraform", "salary": "₹18-30 LPA", "category": "Cloud"},
     {"title": "MLOps Engineer", "company": "Infosys", "location": "Pune, India",
      "type": "Full-time", "skills": "Kubernetes, Docker, CI/CD, Tekton", "salary": "₹15-25 LPA", "category": "MLOps"},
